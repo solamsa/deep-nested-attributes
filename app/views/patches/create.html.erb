@@ -1,0 +1,17 @@
+<%= fields model: @project do |form| %>
+  <%= form.fields_for :tasks, child_index: params[:index] do |task_form| %>
+    <%= task_form.fields_for :patches, child_index: params[:index] do |patch_form| %>
+      <%= turbo_stream.replace "add-patches" do %>
+        <%= form.submit "Add patch", 
+              formaction: patch_path(patch_form.index.to_i + 1), 
+              formmethod: :post, 
+              formnovalidate: true, 
+              id: "add-patch" %>
+      <% end %>
+
+      <%= turbo_stream.append "patches" do %>
+        <%= render "form", form: patch_form %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

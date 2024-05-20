@@ -1,0 +1,10 @@
+<%= fields model: @project do |form| %>
+  <%= form.fields :tasks, child_index: params[:index] do |task_form| %>
+    <%= form.fields_for :patches, child_index: params[:index] do |patch_form|%>
+      <%= turbo_frame_tag "patch_#{0}" do %>
+        <%= patch_form.hidden_field :id, value: params[:id] %>
+        <%= patch_form.hidden_field :_destroy, value: true %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
