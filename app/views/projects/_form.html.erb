@@ -22,16 +22,10 @@
   </div>
 
   <h4>Tasks</h4>
-<div id="tasks">
+
   <%= form.fields_for :tasks do |task_form| %>
     <%= render "tasks/form", form: task_form %>
   <% end %>
-</div>
-<%= form.submit "Add task", 
-      formaction: task_path(@project.tasks.size), 
-      formmethod: :post, 
-      formnovalidate: true, 
-      id: "add-task" %>
 
   <div>
     <%= form.submit %>

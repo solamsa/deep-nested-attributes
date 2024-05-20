@@ -1,14 +1,6 @@
-<%= turbo_frame_tag "patch_#{form.index}" do %>
   <%= form.hidden_field :id %>
 
   <div>
     <%= form.label :note, style: "display: block" %>
     <%= form.text_field :note %>
   </div>
-
-  <%= form.submit "destroy patch", 
-        formaction: patch_path(form.index, form.object.id), 
-        formmethod: :delete, 
-        formnovalidate: true, 
-        data: { turbo_frame: "patch_#{form.index}" } %>
-<% end %>
